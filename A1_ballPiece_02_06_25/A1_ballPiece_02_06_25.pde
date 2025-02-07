@@ -24,32 +24,26 @@ void draw() {
   background(255);
   image(Tool, mouseX - 75, mouseY + 35); // gun tip is on the cursor
   imageMode(CENTER);
-
+  e.display();
   // Allows us to cycle through and display every bullet in the Arraylist
   for (Bullet Ball : b) {
     Ball.update();
     Ball.display();
-    
-    // 
-    //if (Ball.size/2 + e.hurtRadius > Ball.pos.dist(e.hurtBoxPos)) {
-    //  e.update();
-    //} else {
-    //  e.display();
-    //}
+    Ball.bodyShot(e);
   }
-
-  e.display();
   /* Removes unnecessary bullets for game optimitzation doesnt blow up computer
   starts counting the ArrayList from largest index to smallest instead
   */
   for(int i = b.size()-1; i >=0; i--){
-    Bullet ball = b.get(i);
+    Bullet ball = b.get(i); // creating variable
+   
     
     if(ball.ShouldBreakBullet == true){
       b.remove(ball);
     }
   }
 }
+
 
 void mousePressed() {
   chargeTime = millis(); // shows how long the mouse button is pressed for each bullet type
