@@ -7,7 +7,7 @@ class Target{
   
   // constructor for Elon's body
   Target(float x, float y, String Target){
-    hurtRadius = 215;
+    hurtRadius = 68;
     hurtBoxPos = new PVector(620.0, 400.0);
     normalState = loadImage("Target.png");
     hitState = loadImage("Target2.png");
@@ -25,7 +25,8 @@ class Target{
     void display(){
       // unshot elon :(
       pushMatrix();
-      noFill();
+      noStroke();
+      fill(0,255,0);
       image(normalState, pos.x, pos.y);
       circle(hurtBoxPos.x, hurtBoxPos.y, hurtRadius*2 );
       popMatrix();

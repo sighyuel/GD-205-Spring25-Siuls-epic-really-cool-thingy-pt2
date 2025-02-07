@@ -4,10 +4,14 @@ class Bullet{
   PVector speed;
   color c;
   int size;
+  boolean ShouldBreakBullet;
   
   // constructor for the bullets
   Bullet(float x, float y, String type){
     pos = new PVector(x, y);
+    
+    // doesnt break bullet automatically
+    ShouldBreakBullet = false;
     
     // puts all the bullets for specific colours and sizes and speeds depending on the size
     switch(type){
@@ -42,6 +46,15 @@ class Bullet{
     pos.add(speed);
     fill(#00ff00, 32);
   }
+  
+  // break bullet when leaving canvas
+  void Break(){
+    
+    if(pos.x == width){
+      ShouldBreakBullet = true;
+    }    
+  }
 }
+
   
   

@@ -1,9 +1,9 @@
 /*
-I want to make a gun that shoots three different colour pellets depending on which 
-button is pressed. Depending on the colour of the bullet the speed will vary.
-*/
+I want to make a gun that shoots three different colour pellets depending on which
+ button is pressed. Depending on the colour of the bullet the speed will vary.
+ */
 Target e; // Target Class
-Bullet b; //  Bullet Class
+ArrayList <Bullet> b; //  Bullet Class and allows for multiple bullets to appear at once
 
 PImage Tool;
 float hor = width/2.0;
@@ -11,46 +11,61 @@ int chargeTime = millis();
 PVector imagePos;
 
 
-void setup(){
+void setup() {
   size(666, 666);
   background(255);
   imagePos = new PVector(555.0, 400.0);
-  e = new Target(imagePos.x, imagePos.y, "Target"); 
-  b = new Bullet(99999, 99999, "type"); // original bullet shows offscreen 
+  e = new Target(imagePos.x, imagePos.y, "Target");
+  b = new ArrayList <Bullet>();
   Tool = loadImage("tool.png"); // brings in the gun
 }
 
-void draw(){
+void draw() {
   background(255);
   image(Tool, mouseX - 75, mouseY + 35); // gun tip is on the cursor
-  b.update(); // makes bullet travel
-  b.display(); // makes bullet spawn
   imageMode(CENTER);
-  
-  // collision detection
-  if (b.size/2 + e.hurtRadius > b.pos.dist(e.hurtBoxPos)){
-    e.update();
-  } else {
-    e.display();
+
+  // Allows us to cycle through and display every bullet in the Arraylist
+  for (Bullet Ball : b) {
+    Ball.update();
+    Ball.display();
+    
+    // 
+    //if (Ball.size/2 + e.hurtRadius > Ball.pos.dist(e.hurtBoxPos)) {
+    //  e.update();
+    //} else {
+    //  e.display();
+    //}
   }
-  
+
+  e.display();
+  /* Removes unnecessary bullets for game optimitzation doesnt blow up computer
+  starts counting the ArrayList from largest index to smallest instead
+  */
+  for(int i = b.size()-1; i >=0; i--){
+    Bullet ball = b.get(i);
+    
+    if(ball.ShouldBreakBullet == true){
+      b.remove(ball);
+    }
+  }
 }
 
-void mousePressed(){
+void mousePressed() {
   chargeTime = millis(); // shows how long the mouse button is pressed for each bullet type
 }
 
-void mouseReleased(){
+void mouseReleased() {
   chargeTime = millis() - chargeTime;
   println("chargeTime", chargeTime);
   int slowCharge = 1000; // need to hold m1 for 1 second for big charge
   int mediCharge = 500; // need to hold m1 for 0.5 seconds for medium charge
-  
-  if(chargeTime > slowCharge){
-    b = new Bullet(mouseX, mouseY, "slow");
-  } else if(chargeTime > mediCharge){
-    b = new Bullet(mouseX, mouseY, "medi");
+
+  if (chargeTime > slowCharge) {
+    b.add (new Bullet(mouseX, mouseY, "slow"));
+  } else if (chargeTime > mediCharge) {
+    b.add (new Bullet(mouseX, mouseY, "medi"));
   } else {
-    b = new Bullet(mouseX, mouseY, "fast");
+    b.add (new Bullet(mouseX, mouseY, "fast"));
   }
 }
