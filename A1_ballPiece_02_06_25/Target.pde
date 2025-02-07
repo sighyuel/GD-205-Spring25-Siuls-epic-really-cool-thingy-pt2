@@ -6,8 +6,6 @@ public class Target{
   PVector pos;
   PImage normalState, hitState;
   int hurtRadius;
-  float top;
-  float bot;
   float right;
   float left;
   
@@ -28,8 +26,6 @@ public class Target{
         image(normalState, x, y);
         break;
          }
-    top = bodyBoxPos.y - bodyBoxArea.y/2;
-    bot = bodyBoxPos.y + bodyBoxArea.y/2;
     right = bodyBoxPos.x + bodyBoxArea.x/2;
     left = bodyBoxPos.x - bodyBoxArea.x/2;
   }

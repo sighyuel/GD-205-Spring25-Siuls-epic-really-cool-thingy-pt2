@@ -6,8 +6,6 @@ public class Bullet{
   color c;
   int size;
   boolean ShouldBreakBullet;
-  float top;
-  float bot;
   float right;
   float left;
   
@@ -36,8 +34,6 @@ public class Bullet{
         size = 15;
         break;     
     }
-    top = pos.y - size/2.0;
-    bot = pos.y + size/2.0;
     right = pos.x + size/2.0;
     left = pos.x - size/2.0; 
   }
@@ -53,20 +49,27 @@ public class Bullet{
   void update(){
     pos.add(speed);
     fill(#00ff00, 32);
-    top = pos.y - size/2.0;
-    bot = pos.y + size/2.0;
-    right = pos.x + size/2.0;
-    left = pos.x - size/2.0;
+    right = pos.x-100 + size/2.0;
+    left = pos.x-100 - size/2.0;
     
   }
   
-  // collisions
+  // head collisions
+  void headShot(Target elon){
+      if (size/2 + elon.hurtRadius > pos.dist(e.headBoxPos)){
+    e.update();
+  } else {
+    e.display();
+  }
+  }
+  
+  // body collisions
   void bodyShot(Target elon){
-    if (top <= elon.bot &&
-        bot >= elon.top &&
-        left <= elon.right &&
+    if ( left <= elon.right &&
         right >= elon.left){
           elon.update();
+    } else {
+      elon.display();
     }
   }
   

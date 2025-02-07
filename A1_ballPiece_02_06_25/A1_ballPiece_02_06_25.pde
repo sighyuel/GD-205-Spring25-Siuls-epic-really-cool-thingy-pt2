@@ -24,12 +24,12 @@ void draw() {
   background(255);
   image(Tool, mouseX - 75, mouseY + 35); // gun tip is on the cursor
   imageMode(CENTER);
-  e.display();
   // Allows us to cycle through and display every bullet in the Arraylist
   for (Bullet Ball : b) {
     Ball.update();
     Ball.display();
     Ball.bodyShot(e);
+    Ball.headShot(e);
   }
   /* Removes unnecessary bullets for game optimitzation doesnt blow up computer
   starts counting the ArrayList from largest index to smallest instead
