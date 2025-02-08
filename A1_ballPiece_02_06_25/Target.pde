@@ -8,6 +8,7 @@ public class Target{
   int hurtRadius;
   float right;
   float left;
+  boolean pleaseDie;
   
   // constructor for Elon's body
   Target(float x, float y, String Target){
@@ -28,6 +29,7 @@ public class Target{
          }
     right = bodyBoxPos.x + bodyBoxArea.x/2;
     left = bodyBoxPos.x - bodyBoxArea.x/2;
+    pleaseDie = false;
   }
     
     void display(){
