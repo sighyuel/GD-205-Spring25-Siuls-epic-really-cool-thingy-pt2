@@ -31,6 +31,8 @@ void draw() {
     Ball.bodyShot(e);
     Ball.headShot(e);
   }
+  e.death(); // supposed to make big elon disappear and make small elon appear but #notworking
+  
   /* Removes unnecessary bullets for game optimitzation doesnt blow up computer
   starts counting the ArrayList from largest index to smallest instead
   */
