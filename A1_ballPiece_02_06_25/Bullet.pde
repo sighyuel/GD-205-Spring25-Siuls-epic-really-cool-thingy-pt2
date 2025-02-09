@@ -1,17 +1,17 @@
 public class Bullet {
 
   Target elon;
-  PVector pos;
+  PVector posB;
   PVector speed;
   color c;
   int size;
   boolean ShouldBreakBullet;
-  float right;
-  float left;
+  float rightB;
+  float leftB;
 
   // constructor for the bullets
   Bullet(float x, float y, String type) {
-    pos = new PVector(x, y);
+    posB = new PVector(x, y);
 
     // doesnt break bullet automatically
     ShouldBreakBullet = false;
@@ -34,49 +34,29 @@ public class Bullet {
       size = 15;
       break;
     }
-    right = pos.x + size/2.0;
-    left = pos.x - size/2.0;
+    rightB = posB.x + size/2.0;
+    leftB = posB.x - size/2.0;
   }
 
   // displays the bullet themselves
   void display() {
     fill(c);
     noStroke();
-    circle(pos.x, pos.y, size);
+    circle(posB.x, posB.y, size);
   }
 
   // adds bullet travel
   void update() {
-    pos.add(speed);
+    posB.add(speed);
     fill(#00ff00, 32);
-    right = pos.x-100 + size/2.0;
-    left = pos.x-100 - size/2.0;
+    rightB = posB.x-100 + size/2.0;
+    leftB = posB.x-100 - size/2.0;
   }
 
-  // head collisions
-  void headShot(Target elon) {
-    if (size/2 + elon.hurtRadius > pos.dist(e.headBoxPos)) {
-      elon.update();
-      elon.pleaseDie = true;
-    } else {
-      elon.display();
-    }
-  }
-
-  // body collisions
-  void bodyShot(Target elon) {
-    if ( left <= elon.right &&
-      right >= elon.left) {
-      elon.update();
-      elon.pleaseDie = true;
-    } else {
-      elon.display();
-    }
-  }
 
   // break bullet when leaving canvas
   void Break() {
-    if (pos.x == width) {
+    if (posB.x == width) {
       ShouldBreakBullet = true;
     }
   }

@@ -50,11 +50,22 @@ public class Target {
     noTint();
   }
   
-  void death(){
-    if(pleaseDie){
-      e.update();
-    } else {
-      e.display();
-    }
-  }
+  //void death(Bullet ball){
+  //  // if statement to makes boolean true under certain conditions for this loop.
+  //if((ball.size/2 + e.hurtRadius > ball.posB.dist(e.headBoxPos) ||
+  //    (ball.leftB <= e.right ||
+  //    ball.rightB >= e.left)
+  //    {
+  //      pleaseDie = true;
+  //    } else{
+  //      pleaseDie = false;
+  //    }
+      
+  //    // should make the dead elon replace the live elon when shot
+  //  if(!pleaseDie){
+  //    e.display();
+  //  } else {
+  //    e.update();
+  //  }
+  //}
 }
