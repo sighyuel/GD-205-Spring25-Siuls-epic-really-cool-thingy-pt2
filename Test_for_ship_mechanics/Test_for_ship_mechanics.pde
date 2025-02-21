@@ -1,11 +1,12 @@
-PVector speed;
+PVector HoriSpeed, VertSpeed;
 PVector size;
 
 
 void setup(){
   size(666,666);
-  speed = new PVector(-2.0, 0.0);
-  size = new PVector(111.0, 111.0);
+  VertSpeed = new PVector(0.0, 30.0);
+  HoriSpeed = new PVector(75.0, 0.0);
+  size = new PVector(10.0, 111.0);
 }
 
 void draw(){
@@ -13,10 +14,12 @@ void draw(){
   
   rect(size.x, size.y, 50, 50);
   
-}
-
-void keyPressed(){
-  if(key == 'a'){
-    size.add(speed);
+  if(frameCount % 60 == 0){
+    size.add(HoriSpeed);
+    println(size.x);
   }
+  if(size.x == 610.0){
+    size.add(VertSpeed);
+  }
+
 }
